@@ -26,6 +26,4 @@ class Channel extends Model
     {
         return $this->hasMany('App\Thread');
     }
-
-
 }
