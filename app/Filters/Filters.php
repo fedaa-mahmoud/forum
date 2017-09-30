@@ -6,15 +6,38 @@ use Illuminate\Http\Request;
 
 abstract class Filters {
 
+    /**
+     * Request, QueryBuilder.
+     *
+     * @var $builder
+     * @var Request
+     */
     protected $request, $builder;
 
+    /**
+     * Array of filters.
+     *
+     * @var array
+     */
     protected $filters = [];
 
+    /**
+     * Filters constructor.
+     *
+     * Filters constructor.
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
+    /**
+     * Apply the request filter.
+     *
+     * @param $builder
+     * @return mixed
+     */
     public function apply($builder)
     {
         $this->builder = $builder;
@@ -30,6 +53,11 @@ abstract class Filters {
         return $this->builder;
     }
 
+    /**
+     * getting the url wanted filtration.
+     *
+     * @return array
+     */
     protected function getFilters()
     {
         // intersect here give you the filter only if it is exists, opposite of only

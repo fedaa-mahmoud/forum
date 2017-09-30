@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model {
 
+    /**
+     * Guard fields.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
     /**
@@ -28,6 +33,11 @@ class Reply extends Model {
         return $this->morphMany(Favorite::class, 'favorited');
     }
 
+    /**
+     * attach to favorite relationship.
+     *
+     * @return Model
+     */
     public function favorite()
     {
         $attributes = ['user_id' => auth()->id()];
@@ -37,6 +47,11 @@ class Reply extends Model {
         }
     }
 
+    /**
+     * Check is favorite or not.
+     *
+     * @return bool
+     */
     public function isFavorited()
     {
         return $this->favorites()->where('user_id', auth()->id())->exists();
